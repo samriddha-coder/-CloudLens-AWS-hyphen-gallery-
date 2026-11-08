@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project Training Report</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background: #eef2f5;
+    color: #111;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    margin: 15px auto;
+    background: #fff;
+    border: 4px double #1a1a1a;
+    position: relative;
+    page-break-after: always;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  @media print {
+    body {
+      background: transparent;
+    }
+    .page {
+      margin: 0;
+      width: 100%;
+      min-height: 100vh;
+      box-shadow: none;
+      border: 4px double #1a1a1a;
+      page-break-after: always;
+    }
+  }
+
+  /* Typography */
+  .text-center { text-align: center; }
+  .text-right { text-align: right; }
+  .bold { font-weight: bold; }
+  .uppercase { text-transform: uppercase; }
+
+  /* Page 1: Cover */
+  .cover-title {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.5;
+    margin-top: 30px;
+    letter-spacing: 0.5px;
+  }
+  .cover-subtitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  .logo-wrapper {
+    margin: 45px auto;
+    width: 130px;
+    height: 130px;
+    border: 4px solid #6b1526;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6b1526;
+    background: #fdfaf6;
+  }
+  .logo-text {
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+  .divider-line {
+    border-top: 1.5px solid #800020;
+    margin: 30px 25px;
+  }
+  .org-label {
+    color: #800020;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .org-name {
+    color: #6b1526;
+    font-size: 22px;
+    font-weight: 900;
+    margin-top: 12px;
+    letter-spacing: 1px;
+  }
+  .signatures-row {
+    position: absolute;
+    bottom: 35mm;
+    left: 20mm;
+    right: 20mm;
+    display: flex;
+    justify-content: space-between;
+  }
+  .sig-item {
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .sig-line {
+    margin-top: 40px;
+    border-bottom: 1.5px solid #111;
+    width: 180px;
+  }
+
+  /* Page 2: Student Details */
+  .details-table {
+    width: 100%;
+    margin-top: 35px;
+    border-collapse: separate;
+    border-spacing: 0 28px;
+    font-size: 19px;
+    font-weight: bold;
+  }
+  .details-table td.lbl {
+    width: 25%;
+    white-space: nowrap;
+  }
+  .details-table td.val {
+    border-bottom: 1.5px solid #111;
+    padding-left: 10px;
+    color: #222;
+  }
+  .meta-info-box {
+    margin-top: 45px;
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 2.1;
+  }
+
+  /* Headings & Content */
+  .section-title {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  p {
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    text-align: justify;
+  }
+
+  /* Experiment / Lab sheet styling (matching Page 6/7/10 of PDF) */
+  .lab-box {
+    border: 2px solid #2b5797;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-size: 13px;
+  }
+  .lab-box-header {
+    background-color: #2b5797;
+    color: #fff;
+    padding: 8px 12px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+  }
+  .lab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+  .panel {
+    border: 1px solid #c8d4e2;
+    padding: 8px 12px;
+    border-radius: 3px;
+    background: #fbfdff;
+  }
+  .panel-title {
+    font-weight: bold;
+    color: #1a3e72;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+
+  table.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 13.5px;
+  }
+  table.styled-table th, table.styled-table td {
+    border: 1px solid #444;
+    padding: 7px 10px;
+  }
+  table.styled-table th {
+    background-color: #f2f5f9;
+    font-weight: bold;
+  }
+  ol, ul {
+    margin-top: 6px;
+    margin-bottom: 12px;
+    padding-left: 22px;
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER PAGE -->
+<div class="page">
+  <div class="text-center cover-title">
+    PROJECT TRAINING REPORT<br>ON<br>AWS CLOUD ARCHITECTURE &amp; FULL-STACK APPLICATION
+  </div>
+
+  <div class="logo-wrapper">
+    <div class="logo-text">AWS</div>
+    <div style="font-size: 10px; font-weight: bold; letter-spacing: 1px;">CLOUD</div>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <div class="text-center">
+    <div class="org-label">ORGANIZED &amp; DEVELOPED BY</div>
+    <div class="org-name">CLOUDLENS ENGINEERING PROJECT</div>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <div class="signatures-row">
+    <div class="sig-item">
+      TRAINER'S SIGNATURE
+      <div class="sig-line"></div>
+    </div>
+    <div class="sig-item">
+      SUBMITTED BY
+      <div class="sig-line"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: STUDENT REGISTRATION DETAILS -->
+<div class="page">
+  <table class="details-table">
+    <tr>
+      <td class="lbl">NAME :</td>
+      <td class="val">SAMRIDDHA</td>
+    </tr>
+    <tr>
+      <td class="lbl">REG. NO. :</td>
+      <td class="val"></td>
+    </tr>
+    <tr>
+      <td class="lbl">ROLL NO. :</td>
+      <td class="val"></td>
+    </tr>
+    <tr>
+      <td class="lbl">YEAR :</td>
+      <td class="val">2026</td>
+    </tr>
+  </table>
+
+  <div class="meta-info-box">
+    <div>INSTITUTE NAME: Bakura Govt. Polytechnic</div>
+    <div>FIELD OF TRAINING: <span style="font-weight: 900;">AWS CLOUD &amp; FULL-STACK WEB DEVELOPMENT</span></div>
+    <div>PERIOD: FROM 28/10/26 to 06/11/26</div>
+  </div>
+</div>
+
+<!-- PAGE 3: INTRODUCTION -->
+<div class="page">
+  <div class="section-title">INTRODUCTION</div>
+  <p>
+    Cloud Computing is the delivery of on-demand computing services—including compute servers, storage, databases, networking, and software—over the Internet with pay-as-you-go pricing. Rather than purchasing and managing physical servers, organizations leverage cloud infrastructure provided by Amazon Web Services (AWS) to achieve high availability, fault tolerance, and global scalability.
+  </p>
+  <p>
+    In this project, <strong>CloudLens</strong> was architected as a cloud-native image gallery and asset management system. The system leverages <strong>AWS EC2</strong> (Elastic Compute Cloud) as the virtualized host environment, <strong>AWS S3</strong> (Simple Storage Service) for durable object storage, and a containerized <strong>PostgreSQL</strong> database for structured metadata persistence.
+  </p>
+  <p>
+    The front-end is crafted using <strong>React.js</strong> with a modern responsive glassmorphism UI, while the server-side REST API is built using <strong>Node.js</strong> and <strong>Express.js</strong> with integrated AWS SDK and Role-Based Access Control (RBAC).
+  </p>
+</div>
+
+<!-- PAGE 4: AIM & SYSTEM ARCHITECTURE -->
+<div class="page">
+  <div class="section-title">AIM &amp; SCOPE</div>
+  <p>
+    To acquire comprehensive practical knowledge of configuring cloud infrastructure on Amazon Web Services (AWS), setting up S3 object storage policies, containerizing applications with Docker &amp; Docker Compose, and deploying a secure full-stack web application onto an AWS EC2 instance.
+  </p>
+
+  <div style="margin-top: 25px;">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th style="width: 10%;">Sl. No.</th>
+          <th style="width: 35%;">System Component</th>
+          <th style="width: 55%;">Role &amp; Technical Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>AWS EC2 (Ubuntu Linux)</strong></td>
+          <td>Virtual server host running Docker containers and Nginx reverse proxy.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>AWS S3 Storage</strong></td>
+          <td>Bucket (<code>samriddhabaket1718</code>) for secure cloud media storage with public-read URLs.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>React.js (Frontend)</strong></td>
+          <td>Single Page Application (SPA) with responsive grid, lightbox modals, and admin login.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Node.js &amp; Express (Backend)</strong></td>
+          <td>RESTful API layer with Multer memory buffer and AWS SDK S3 client handler.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>PostgreSQL Database</strong></td>
+          <td>Stores metadata with automated tables and zero-downtime local JSON fallback.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PAGE 5: EXPERIMENT / PRACTICAL PROCEDURE -->
+<div class="page">
+  <div class="section-title">PRACTICAL PROCEDURE &amp; WORKFLOW</div>
+
+  <ol>
+    <li><strong>S3 Bucket Creation &amp; IAM Permissions:</strong> Created AWS S3 bucket named <code>samriddhabaket1718</code> in region <code>ap-southeast-2</code> with programmatic IAM access keys.</li>
+    <li><strong>Backend REST API Development:</strong> Implemented Express server with <code>@aws-sdk/client-s3</code> for <code>PutObjectCommand</code> and <code>DeleteObjectCommand</code>.</li>
+    <li><strong>Role-Based Access Control (RBAC):</strong> Created JWT authentication middleware ensuring only verified administrators can delete media assets.</li>
+    <li><strong>Containerization with Docker Compose:</strong> Created multi-container configurations linking Nginx, Node.js API, and PostgreSQL.</li>
+    <li><strong>EC2 Server Automated Deployment:</strong> Executed <code>setup-ec2.sh</code> shell script on Ubuntu Linux to install Docker, pull repositories, and launch the application.</li>
+  </ol>
+
+  <div class="lab-box">
+    <div class="lab-box-header">Experiment Summary: Cloud Image Deployment</div>
+    <div class="lab-grid">
+      <div class="panel">
+        <div class="panel-title">1. Aim</div>
+        Deploy full-stack web app on EC2 with S3 integration.
+      </div>
+      <div class="panel">
+        <div class="panel-title">2. Tools Used</div>
+        AWS S3, EC2, Docker, Node.js, React.
+      </div>
+      <div class="panel">
+        <div class="panel-title">3. Result</div>
+        Application live and operational on Port 80 &amp; 5000.
+      </div>
+      <div class="panel">
+        <div class="panel-title">4. Precautions</div>
+        Keep AWS Secret Keys secure; configure CORS policies properly.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 6: VIVA-VOCE QUESTIONS & CONCLUSION -->
+<div class="page">
+  <div class="section-title">CONCLUSION &amp; VIVA-VOCE QUESTIONS</div>
+
+  <p>
+    <strong>Conclusion:</strong> The project successfully demonstrates the deployment of a resilient cloud-native application using AWS S3 and EC2. It gives deep practical understanding of modern DevOps, container orchestration, and cloud architecture.
+  </p>
+
+  <div style="margin-top: 25px;">
+    <div style="font-size: 17px; font-weight: bold; margin-bottom: 12px; color: #1a3e72;">Frequently Asked Viva-Voce Questions:</div>
+    <ol>
+      <li><strong>What is the difference between AWS S3 and EBS?</strong><br>
+      <em>Answer:</em> S3 is an object storage service designed for storing files and media accessed via HTTP, whereas EBS is block storage attached directly to EC2 instances as hard drives.</li>
+      <li><strong>Why is Docker Compose utilized in this project?</strong><br>
+      <em>Answer:</em> It enables multi-container orchestration, allowing PostgreSQL, Node.js Backend, and React Frontend to run in isolated yet interconnected environments.</li>
+      <li><strong>How is the deletion security handled?</strong><br>
+      <em>Answer:</em> Deletion requests require a valid JWT bearer token verified by the backend auth middleware.</li>
+      <li><strong>What is the purpose of the Fallback Mechanism?</strong><br>
+      <em>Answer:</em> If AWS S3 credentials or PostgreSQL are unavailable locally, the system automatically redirects to local disk storage and JSON database without crashing.</li>
+    </ol>
+  </div>
+</div>
+
+</body>
+</html>

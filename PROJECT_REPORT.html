@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Report - CloudLens Image Gallery</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    @page {
+      size: A4;
+      margin: 20mm;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px;
+      background: #ffffff;
+    }
+
+    .cover {
+      text-align: center;
+      padding: 60px 0 40px;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 40px;
+      page-break-after: always;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #4338ca;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: #64748b;
+      max-width: 650px;
+      margin: 0 auto 40px;
+    }
+
+    .meta-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .meta-row:last-child {
+      border-bottom: none;
+    }
+
+    .meta-label {
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .meta-val {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #1e1b4b;
+      border-bottom: 2px solid #6366f1;
+      padding-bottom: 8px;
+      margin-top: 36px;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      color: #334155;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin-bottom: 16px;
+      padding-left: 24px;
+      font-size: 0.95rem;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 700;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: #4f46e5;
+    }
+
+    .callout {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      font-size: 0.92rem;
+    }
+
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+      }
+      .no-print {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Print Button Bar (Hidden in Print) -->
+  <div class="no-print" style="background: #4f46e5; color: white; padding: 14px 20px; border-radius: 8px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <strong>📄 Project Report Ready to Save as PDF!</strong><br>
+      <span style="font-size: 0.85rem; opacity: 0.9;">Click the button on the right or press Ctrl + P to download as PDF.</span>
+    </div>
+    <button onclick="window.print()" style="background: white; color: #4f46e5; font-weight: 700; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">
+      ⬇️ Save as PDF
+    </button>
+  </div>
+
+  <!-- Cover Page -->
+  <div class="cover">
+    <span class="badge">Project Report & Documentation</span>
+    <h1 class="title">CloudLens: Cloud-Native Image Gallery Web Application</h1>
+    <p class="subtitle">A full-stack, scalable image upload, display, and role-based deletion system deployed on AWS EC2 with Amazon S3, PostgreSQL, Docker, and React.</p>
+
+    <div class="meta-box">
+      <div class="meta-row">
+        <span class="meta-label">Candidate Name:</span>
+        <span class="meta-val">Samriddha Das</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Project Topic:</span>
+        <span class="meta-val">AWS Cloud Image Gallery Web Application</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Compute Service:</span>
+        <span class="meta-val">AWS EC2 (Ubuntu 24.04 LTS)</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Object Storage:</span>
+        <span class="meta-val">Amazon S3 (Bucket: samriddhabaket1718)</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Database:</span>
+        <span class="meta-val">PostgreSQL 16 (Docker Container)</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Live Application URL:</span>
+        <span class="meta-val">http://32.236.11.79</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">GitHub Repository:</span>
+        <span class="meta-val">github.com/samriddha-coder/-CloudLens-AWS-hyphen-gallery-</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Submission Date:</span>
+        <span class="meta-val">November 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 1 -->
+  <h2>1. Executive Summary & Project Overview</h2>
+  <p>
+    <strong>CloudLens</strong> is a modern, production-grade cloud-native web application designed to demonstrate the real-world integration of enterprise cloud services (Amazon Web Services), containerized database management, and modern full-stack engineering. The system enables public users to seamlessly upload and view images with custom metadata, while enforcing strict <strong>Role-Based Access Control (RBAC)</strong> ensuring that only authenticated administrators possess the authorization to permanently delete assets.
+  </p>
+  <p>
+    The project completely decouples frontend presentation from backend business logic and storage tiers. Binary image assets are securely streamed directly to <strong>Amazon Simple Storage Service (S3)</strong>, relational metadata is persisted within a containerized <strong>PostgreSQL</strong> instance, and all services are orchestrated via <strong>Docker Compose</strong> running on an <strong>Amazon Elastic Compute Cloud (EC2)</strong> virtual server.
+  </p>
+
+  <!-- Section 2 -->
+  <h2>2. Architectural Design & Tech Stack</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Layer / Tier</th>
+        <th>Technology</th>
+        <th>Responsibility & Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Frontend</strong></td>
+        <td>React.js (Vite), CSS3, Lucide Icons</td>
+        <td>High-performance responsive UI, drag-and-drop file upload, lightbox preview, and admin authentication modal.</td>
+      </tr>
+      <tr>
+        <td><strong>Backend API</strong></td>
+        <td>Node.js, Express.js REST API</td>
+        <td>Multipart form handling (Multer), JWT verification, AWS SDK integration, and PostgreSQL queries.</td>
+      </tr>
+      <tr>
+        <td><strong>Object Storage</strong></td>
+        <td>Amazon S3 (ap-southeast-2)</td>
+        <td>Scalable, durable cloud storage for binary image files with fine-grained CORS and public-read access policies.</td>
+      </tr>
+      <tr>
+        <td><strong>Database</strong></td>
+        <td>PostgreSQL 16</td>
+        <td>Relational schema tracking image IDs, original filenames, S3 URLs, uploader identities, and timestamps.</td>
+      </tr>
+      <tr>
+        <td><strong>Compute / Host</strong></td>
+        <td>AWS EC2 (Ubuntu Linux)</td>
+        <td>Virtual compute instance hosting the multi-container Docker cluster with public IPv4 routing.</td>
+      </tr>
+      <tr>
+        <td><strong>DevOps / Orchestration</strong></td>
+        <td>Docker & Docker Compose</td>
+        <td>Automated building and network linking of database, backend API, and frontend web server.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Section 3 -->
+  <h2>3. Key Features & Implementation Logic</h2>
+  <h3>3.1 Public User Capabilities (Upload & View)</h3>
+  <ul>
+    <li><strong>Drag-and-Drop Image Uploader:</strong> Users can drag or select files across multiple standard image formats (JPEG, PNG, WebP, GIF, SVG).</li>
+    <li><strong>Metadata Attribution:</strong> Each upload accepts a custom image title and uploader identity.</li>
+    <li><strong>S3 Asset Streaming:</strong> Memory buffers stream binaries directly to Amazon S3 using <code>@aws-sdk/client-s3</code> with zero disk bloat.</li>
+    <li><strong>Interactive Gallery & Lightbox:</strong> Images render in a responsive masonry grid with full-resolution interactive modals.</li>
+  </ul>
+
+  <h3>3.2 Administrator Security & Role-Based Access Control (RBAC)</h3>
+  <ul>
+    <li><strong>Protected Deletion Endpoint:</strong> Standard users see lock indicators. Deletion requires an active JSON Web Token (JWT) bearing the <code>admin</code> role.</li>
+    <li><strong>Two-Phase Deletion:</strong> When an admin confirms deletion, the system executes an atomic delete operation: removing the object key from the AWS S3 bucket and pruning the record from PostgreSQL.</li>
+    <li><strong>Pre-Seeded Credentials:</strong> Default administrator authentication configured via Bcrypt password hashing.</li>
+  </ul>
+
+  <!-- Section 4 -->
+  <h2>4. Cloud Infrastructure & AWS Configuration</h2>
+  <h3>4.1 Amazon S3 Bucket Configuration</h3>
+  <p>
+    An Amazon S3 general-purpose bucket named <code>samriddhabaket1718</code> was provisioned in the <code>ap-southeast-2</code> (Sydney) region with:
+  </p>
+  <ul>
+    <li><strong>Bucket Policy:</strong> Configured with <code>s3:GetObject</code> public read access to allow direct browser asset streaming.</li>
+    <li><strong>CORS Policy:</strong> Configured with wildcard origin rules allowing web clients to render high-resolution assets smoothly.</li>
+    <li><strong>IAM Identity:</strong> Programmatic access keys attached with <code>AmazonS3FullAccess</code> for secure server-side upload and deletion.</li>
+  </ul>
+
+  <h3>4.2 Amazon EC2 Virtual Server & Networking</h3>
+  <p>
+    The application runs on an AWS EC2 instance (Ubuntu 24.04 LTS). Network security group inbound rules were defined as follows:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Protocol</th>
+        <th>Port Range</th>
+        <th>Source</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>HTTP</td>
+        <td>80</td>
+        <td>0.0.0.0/0</td>
+        <td>Production Web Traffic (Nginx Frontend)</td>
+      </tr>
+      <tr>
+        <td>Custom TCP</td>
+        <td>3000</td>
+        <td>0.0.0.0/0</td>
+        <td>Frontend Web Interface</td>
+      </tr>
+      <tr>
+        <td>Custom TCP</td>
+        <td>5000</td>
+        <td>0.0.0.0/0</td>
+        <td>Backend REST API Endpoint</td>
+      </tr>
+      <tr>
+        <td>SSH</td>
+        <td>22</td>
+        <td>Admin IP</td>
+        <td>Secure Remote Server Management</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Section 5 -->
+  <h2>5. Multi-Container Docker Architecture</h2>
+  <p>
+    The application runs 3 isolated Docker containers communicating across an internal bridge network:
+  </p>
+  <ol>
+    <li><code>gallery_postgres</code>: PostgreSQL 16 Alpine container with persistent host volume mounting (<code>postgres_data</code>) and automatic database healthchecks.</li>
+    <li><code>gallery_backend</code>: Node.js Express application container connected to PostgreSQL and AWS S3.</li>
+    <li><code>gallery_frontend</code>: Multi-stage Nginx Alpine container serving optimized React production static files and reverse-proxying API calls.</li>
+  </ol>
+
+  <!-- Section 6 -->
+  <h2>6. Live Verification & Testing Results</h2>
+  <div class="callout">
+    <strong>Live Deployment Verification Status:</strong><br>
+    The application is currently live, functional, and verified on public IP <code>http://32.236.11.79</code>.<br>
+    Test image uploads successfully persist to S3 bucket <code>samriddhabaket1718</code> and admin deletion tests confirm full lifecycle cleanup.
+  </div>
+
+  <!-- Section 7 -->
+  <h2>7. Conclusion</h2>
+  <p>
+    The <strong>CloudLens</strong> project demonstrates an end-to-end implementation of modern cloud architectural patterns. By combining containerized microservices on AWS EC2 with managed object storage on Amazon S3 and relational persistence via PostgreSQL, the application achieves high scalability, strict security boundaries, and zero data leakage. All code has been version-controlled on GitHub and deployed live.
+  </p>
+
+  <div class="footer">
+    CloudLens Project Report | Candidate: Samriddha Das | Submitted via Google Forms
+  </div>
+
+</body>
+</html>

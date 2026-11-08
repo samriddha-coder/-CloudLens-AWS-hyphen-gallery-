@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # 1. PostgreSQL Database Service
+  postgres:
+    image: postgres:16-alpine
+    container_name: gallery_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: image_gallery
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d image_gallery"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 2. Node.js Backend Service
+  backend:
+    build: ./backend
+    container_name: gallery_backend
+    restart: always
+    environment:
+      PORT: 5000
+      BASE_URL: http://localhost:5000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: image_gallery
+      JWT_SECRET: super_secret_jwt_key_gallery_2026
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: admin123
+      ADMIN_SECRET_KEY: admin_super_secret_key
+      # AWS S3 Settings
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-YOUR_AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-YOUR_AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ap-southeast-2
+      AWS_BUCKET_NAME: samriddhabaket1718
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend/uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # 3. React Frontend Service
+  frontend:
+    build: ./frontend
+    container_name: gallery_frontend
+    restart: always
+    ports:
+      - "80:80"
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+    driver: local
