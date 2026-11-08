@@ -775,15 +775,5 @@ def create_internship_report():
     doc.build(story, canvasmaker=BorderedNumberedCanvas)
     print("PDF generated successfully! Size:", os.path.getsize(pdf_path), "bytes")
 
-    # Sync to other filename aliases
-    import shutil
-    for alias in ["Internship_Training_Report_Samriddha_Das.pdf", "CloudLens_Internship_Report.pdf"]:
-        alias_path = os.path.join(os.path.dirname(__file__), alias)
-        try:
-            shutil.copy2(pdf_path, alias_path)
-            print(f"Copied to {alias}")
-        except Exception as e:
-            print(f"Could not copy to {alias}: {e}")
-
 if __name__ == "__main__":
     create_internship_report()
